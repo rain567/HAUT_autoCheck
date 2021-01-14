@@ -92,40 +92,33 @@ def checkIn(userInfo,token):
      #随机温度(36.2~36.8)
     a=random.uniform(36.2,36.8)
     temperature = round(a, 1)
-    jsons={
-            "businessType": "epmpics",
-            "method": "submitUpInfoSchool",
-            "jsonData": {
-            "deptStr": {
-                "deptid": userInfo['classId'],
-                "text": userInfo['classDescription']
-            },
-            #如果你来自其他学校，请自行打卡抓包修改地址字段
-            "areaStr": {"streetNumber":"","street":"长椿路辅路","district":"中原区","city":"郑州市","province":"河南省","town":"","pois":"河南工业大学(莲花街校区)","lng":113.55064699999795 + random.random()/1000,"lat":34.83870696238093 + random.random()/1000,"address":"中原区长椿路辅路河南工业大学(莲花街校区)","text":"河南省-郑州市","code":""},
-            "reportdate": round(time.time()*1000),
-            "customerid": userInfo['customerId'],
-            "deptid": userInfo['classId'],
-            "source": "app",
-            "templateid": "clockSign2",
-            "stuNo": userInfo['stuNo'],
-            "username": userInfo['username'],
-            "userid": round(time.time()),
-            "updatainfo": [  
-                {
-                    "propertyname": "temperature",
-                    "value": temperature
-                },
-                {
-                    "propertyname": "symptom",
-                    "value": "无症状"
-                }
-            ],
-            "customerAppTypeRuleId": 147,
-            "clockState": 0,
-            "token": token
-            },
-            "token": token
-    }
+    jsons=   {"businessType": "epmpics", "method": "submitUpInfo",
+         "jsonData": {"deptStr": {"deptid": 146141, "text": "数学与计算机科学学院-计算机科学与技术-计算机科学与技术2018级（3）班"},
+                      "areaStr": "{\"streetNumber\":\"\",\"street\":\"\",\"district\":\"钟山区\",\"city\":\"六盘水市\",\"province\":\"贵州省\",\"town\":\"\",\"pois\":\"六盘水师范学院(龙山校区)\",\"lng\":104.82745899999946,\"lat\":26.575612979920976,\"address\":\"钟山区六盘水师范学院(龙山校区)\",\"text\":\"贵州省-六盘水市\",\"code\":\"\"}",
+                      "reportdate": 1610633613104, "customerid": "2864", "deptid": 146141, "source": "app",
+                      "templateid": "pneumonia", "stuNo": "184006023018", "username": "母成吉", "phonenum": "",
+                      "userid": "24737345", "updatainfo": [{"propertyname": "langtineadress", "value": "楷院"},
+                                                           {"propertyname": "wendu", "value": "36.3"},
+                                                           {"propertyname": "symptom", "value": "无症状"},
+                                                           {"propertyname": "isConfirmed", "value": "否"},
+                                                           {"propertyname": "isdefinde", "value": "否.未隔离"},
+                                                           {"propertyname": "isGoWarningAdress", "value": "否"},
+                                                           {"propertyname": "isTouch", "value": "否"},
+                                                           {"propertyname": "isTransitArea", "value": "否"},
+                                                           {"propertyname": "isTransitProvince", "value": "否"},
+                                                           {"propertyname": "isFFHasSymptom", "value": "没有"},
+                                                           {"propertyname": "isContactFriendIn14", "value": "没有"},
+                                                           {"propertyname": "xinqing", "value": "健康"},
+                                                           {"propertyname": "cxjh", "value": "否"},
+                                                           {"propertyname": "isleaveaddress", "value": "否"},
+                                                           {"propertyname": "dormitory", "value": "楷苑"},
+                                                           {"propertyname": "isAlreadyInSchool", "value": "有"},
+                                                           {"propertyname": "ownPhone", "value": "18885422645"},
+                                                           {"propertyname": "emergencyContact", "value": "母成吉"},
+                                                           {"propertyname": "mergencyPeoplePhone",
+                                                            "value": "18885422645"},
+                                                           {"propertyname": "assistRemark", "value": ""}], "gpsType": 1,
+                      "token": token}}
     #提交打卡
     response = requests.post(sign_url, json=jsons)
     return response
